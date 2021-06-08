@@ -41,18 +41,18 @@ function handleServer(req, res) {
         </html>`)
     res.end();
   }
-console.log('url', url)
-console.log('method', method)
+
   if (url === '/create-user' && method === 'POST') {
     const body = [];
 
     req.on('data', (chunk) => {
       body.push(chunk)
     });
-
+    console.log('lol')
     req.on('end', () => {
       const parseBody = Buffer.concat(body).toString();
-      users.push(parseBody.split('=')[1]);
+      const el = parseBody.split('=')[1];
+      users.push(el);
     })
     res.statusCode = 302;
     res.setHeader('Location', '/users');
